@@ -1,0 +1,51 @@
+class leafGroup {
+
+  boolean alldead = false;
+  int groupNumber = 10;
+  leafClass[] leavesGp = new leafClass[groupNumber];
+
+  void leafGroup() {
+    
+  }
+  void setUp(){
+    for (int i=0;i<groupNumber;i++) {
+      leafClass leaves = new leafClass();
+      leaves.x=0;
+      leaves.y=0;
+      leaves.z=0;
+      leaves.xdis = random(5);
+      leaves.ydis = random(3);
+      leaves.rotXdis=random(0.15);
+      leaves.rotYdis = random(0.15);
+      leaves.z=random(-50);
+      leavesGp[i]=leaves;
+      //println(leavesGp[i]);
+    }
+    //println("okok");
+  }
+  void move() {
+    for (int i=0;i<groupNumber;i++) {
+      leafClass leaves = leavesGp[i];
+       leaves.move();
+       if(i==groupNumber-1){
+         if(leaves.dead==true){
+             alldead=true;
+             leaves.x=0;
+             leaves.y=0;
+             leaves.z=0;
+             leaves.dead=false;
+         }
+         
+       }else{
+          if(leaves.dead==true){
+             leaves.x=0;
+             leaves.y=0;
+             leaves.z=0;
+             leaves.dead=false;
+         }
+       }
+     // println(leaves);
+    }
+  }
+}
+
