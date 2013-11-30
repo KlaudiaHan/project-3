@@ -1,0 +1,62 @@
+void wings(float cPoint_x,float cPoint_y, float ePoint_x,float ePoint_y){
+    float wingLength;
+    wingLength = dist(cPoint_x,cPoint_y,ePoint_x,ePoint_y);
+    /*
+    text("wingLength  "+ wingLength+"\n"
+    +"cPoint_x"+ cPoint_x+"\n"
+    +"ePoint_x"+ ePoint_x, 20, 80);  
+    */
+    float wingHeightDist = 1;
+    float wingHeightCurve = 0.01;
+    int featherNum;
+    featherNum = 30;
+    float featherDist;
+    featherDist = wingLength /featherNum;
+    float wingAngleSin;
+    float wingAngleCos;
+    wingAngleSin = (ePoint_y-cPoint_y)/wingLength;
+    wingAngleCos = (ePoint_x-cPoint_x)/wingLength;
+
+    float[] winPointX = new float[30];
+    float[] winPointY = new float[30];
+    for (int i=1;i<=featherNum;i++){
+      //println("draw");
+        wingHeightCurve = 0.02;
+        float wingHeight;
+    
+        float cPointFea;
+        float ePointFea;
+        float featherLenght;
+        float cPointFea_x;
+        float cPointFea_y;
+        float ePointFea_x;
+        float ePointFea_y;
+        
+        if(i%2!=0){
+          wingHeight = wingLength*0.6;
+        }else{
+          wingHeight = wingLength*0.5;
+        }
+
+        featherLenght = wingHeight - (i*wingHeightDist);
+        
+        
+        cPointFea_x = ((ePoint_x-cPoint_x)/(featherNum))*i+cPoint_x;
+        cPointFea_y = ((ePoint_y-cPoint_y)/(featherNum))*i+cPoint_y;
+        
+        if(cPoint_x<ePoint_x){
+          ePointFea_x = cPointFea_x-wingAngleSin*featherLenght;
+          ePointFea_y = cPointFea_y+wingAngleCos*featherLenght;
+        }else{
+          ePointFea_x = wingAngleSin*featherLenght+cPointFea_x;
+          ePointFea_y = cPointFea_y-wingAngleCos*featherLenght;
+        }
+        strokeWeight(2);
+        
+        line(cPointFea_x,cPointFea_y,ePointFea_x,ePointFea_y);
+        fill(0);
+        ellipse(ePointFea_x,ePointFea_y,5,5);
+        wingHeightDist+=wingHeightCurve;
+    }
+    //line(cPoint_x,cPoint_y,ePoint_x,ePoint_y);
+}
