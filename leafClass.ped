@@ -1,0 +1,50 @@
+class leafClass {
+  float x=0;
+  float y=0;
+  float z=0;
+  float rotateX=0;
+  float rotateY=0;
+  float rotateZ=0;
+  boolean dead=false;
+  float xdis=3;
+  float ydis=2;
+  float rotXdis=0.1;
+  float rotYdis=0.1;
+  void leafClass() {
+  }
+
+  void move() {
+    pushMatrix();
+    translate(x, y, z);
+    rotateX(rotateX);
+    rotateY(rotateY);
+    rotateZ(rotateZ);
+    noFill();
+    noStroke();
+    beginShape();
+    texture(leafImage);
+    vertex(-30, -30, 0, 0, 0);
+    vertex(30, -30, 0, 160, 0);
+    vertex(30, 30, 0, 160, 160);
+    vertex(-30, 30, 0, 0, 160);
+    endShape();
+    popMatrix();
+    x+=xdis;
+    y+=ydis;
+    rotateX+=rotXdis;
+    rotateY+=rotYdis;
+    //rotateZ+=0.2;
+    //println(x);
+
+    if (x>width||y>height) {
+      dead=true;
+    }
+
+    /*if (dead==true) {
+      x=0;
+      y=0;
+      z=0;
+      dead=false;
+    }*/
+  }
+}
